@@ -1,9 +1,12 @@
 package com.example.belfunfair.ui.attractions
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,10 +14,10 @@ import com.example.belfunfair.databinding.FragmentAttractionsBinding
 
 class AttractionsFragment : Fragment() {
 
+    private var _attractionsViewModel: AttractionsViewModel? = null
     private var _binding: FragmentAttractionsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private val attractionsViewModel get() = _attractionsViewModel!!
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,17 +25,21 @@ class AttractionsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val attractionsViewModel =
-            ViewModelProvider(this).get(AttractionsViewModel::class.java)
-
         _binding = FragmentAttractionsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        initModel()
+        return binding.root
+    }
 
-        val textView: TextView = binding.attractionsTitle
-        attractionsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    private fun initModel(){
+        _attractionsViewModel = ViewModelProvider(this)[AttractionsViewModel::class.java]
+
+        val title: TextView = binding.attractionsTitle
+        attractionsViewModel.title.observe(viewLifecycleOwner) { title.text = it }
+
+        val listView: ListView = binding.attractionsList
+        val list: Array<Manege> = attractionsViewModel.attractions.value ?: emptyArray()
+        val arrayAdapter: ArrayAdapter<Manege>? = this.context?.let { ArrayAdapter(it, R.layout.simple_list_item_1, list) }
+        listView.adapter = arrayAdapter
     }
 
     override fun onDestroyView() {
