@@ -1,11 +1,13 @@
 package com.example.belfunfair.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
@@ -47,25 +49,26 @@ class HomeFragment : Fragment() {
         val imageLogo: ImageView = binding.homeImageLogo
         val imageCarrousel: ImageView = binding.homeImageCarrousel
         val imageLion: ImageView = binding.homeImageLion
-        context?.let {
-            if(MainActivity().isDarkMode(it)) {
-                imageLogo.setImageResource(R.drawable.image_logo_belfunfair_dark)
-                imageCarrousel.setImageResource(R.drawable.image_carrousel_night)
-                imageLion.setImageResource(R.drawable.image_lion_belfort_night)
-            } else {
-                imageLogo.setImageResource(R.drawable.image_logo_belfunfair_light)
-                imageCarrousel.setImageResource(R.drawable.image_carrousel_day)
-                imageLion.setImageResource(R.drawable.image_lion_belfort_day)
-            }
+        val isDarkMode = context?.let { MainActivity().isDarkMode(it) } ?: false
+        if (isDarkMode) {
+            imageLogo.setImageResource(R.drawable.image_logo_belfunfair_dark)
+            imageCarrousel.setImageResource(R.drawable.image_carrousel_night)
+            imageLion.setImageResource(R.drawable.image_lion_belfort_night)
+        } else {
+            imageLogo.setImageResource(R.drawable.image_logo_belfunfair_light)
+            imageCarrousel.setImageResource(R.drawable.image_carrousel_day)
+            imageLion.setImageResource(R.drawable.image_lion_belfort_day)
         }
 
         val switch: SwitchCompat = binding.switchLight
         // Open app with system Light Mode
-        switch.isChecked = context?.let { MainActivity().isDarkMode(it) } == true
+        switch.isChecked = isDarkMode
         // Switch Light Mode in app
         switch.setOnCheckedChangeListener { _, isChecked ->
             val mode: Int = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
             AppCompatDelegate.setDefaultNightMode(mode)
+            val toastMessage = if (isChecked) "Dark Theme" else "Light Theme"
+            Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
