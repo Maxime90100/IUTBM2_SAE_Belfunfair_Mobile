@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <TextView
+                android:id="@+id/home_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/prev_title"
+                android:textAlignment="center"
+                android:textSize="50sp" />
+
+            <TextView
+                android:id="@+id/home_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prev_date"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/home_image_logo"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/image_description_logo"
+                android:src="@drawable/image_logo_belfunfair_light" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prev_switch"
+                android:showText="true"
+                android:textOn="@string/night_mode"
+                android:textOff="@string/day_mode"/>
+
+            <ImageView
+                android:id="@+id/home_image_carrousel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image_description_carrousel"
+                tools:src="@drawable/image_carrousel_night" />
+
+            <TextView
+                android:id="@+id/home_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@string/prev_description"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/home_image_lion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image_description_lion_de_belfort"
+                android:src="@drawable/image_lion_belfort_night" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
