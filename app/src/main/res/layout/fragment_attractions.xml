@@ -19,10 +19,16 @@
             android:textSize="20sp"
             android:text="@string/prev_title"/>
 
+        <TextView
+            android:id="@+id/attractions_manege_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_maneges" />
+
         <ListView
             android:id="@+id/attractions_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="200dp" />
 
     </LinearLayout>
 
