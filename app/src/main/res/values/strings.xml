@@ -16,4 +16,5 @@
     <string name="night_mode">Mode nuit</string>
     <string name="day_mode">Mode jour</string>
     <string name="title_maneges">Manèges</string>
+    <string name="connexion">Connexion</string>
 </resources>
