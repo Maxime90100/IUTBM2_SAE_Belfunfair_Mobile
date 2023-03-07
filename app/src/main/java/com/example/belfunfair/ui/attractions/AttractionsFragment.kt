@@ -1,16 +1,18 @@
 package com.example.belfunfair.ui.attractions
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.belfunfair.databinding.FragmentAttractionsBinding
+import com.example.belfunfair.adapter.ExpandableListAdapter
+
+import android.widget.Toast
+import com.example.belfunfair.ui.attractions.AttractionsExpandableListData.data
+
 
 class AttractionsFragment : Fragment() {
 
@@ -36,10 +38,16 @@ class AttractionsFragment : Fragment() {
         val title: TextView = binding.attractionsTitle
         attractionsViewModel.title.observe(viewLifecycleOwner) { title.text = it }
 
-        val listView: ListView = binding.attractionsList
-        val list: Array<Manege> = attractionsViewModel.attractions.value ?: emptyArray()
-        val arrayAdapter: ArrayAdapter<Manege>? = this.context?.let { ArrayAdapter(it, R.layout.simple_list_item_1, list) }
-        listView.adapter = arrayAdapter
+        setExpandableList()
+    }
+
+    private fun setExpandableList(){
+        val expandableListView = binding.attractionsExpendableList
+        val listData = data
+        val titleList = ArrayList(listData.keys)
+        val adapter = this.context?.let { ExpandableListAdapter(it, titleList as ArrayList<String>, listData) }
+        expandableListView.setAdapter(adapter)
+        adapter?.setListeners(expandableListView, listData)
     }
 
     override fun onDestroyView() {
