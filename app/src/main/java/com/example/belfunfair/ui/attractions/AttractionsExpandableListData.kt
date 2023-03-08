@@ -21,8 +21,8 @@ internal object AttractionsExpandableListData {
             expandableListDetail["MANEGES"] = maneges
 
             val _stands = arrayOf(
-                Manege("Autos-tamponeuses","Grand Public",120,description,1,"2023-06-10","2023-06-25"),
-                Manege("Bras-mécanique","Sensations",150,description,2,"2023-07-01","2023-07-15"),
+                Stand("Vapiano","Restaurant",description,1,"2023-06-10","2023-06-25"),
+                Stand("Ritz","Snack",description,2,"2023-07-01","2023-07-15"),
             )
             val stands: MutableList<String> = ArrayList()
             _stands.forEach { s -> stands.add(s.toString()) }

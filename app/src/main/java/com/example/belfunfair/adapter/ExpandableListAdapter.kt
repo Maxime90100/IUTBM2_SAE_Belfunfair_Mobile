@@ -85,13 +85,13 @@ class ExpandableListAdapter internal constructor(
                 Toast.LENGTH_SHORT
             ).show()
         }
-        expandableListView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+        /*expandableListView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
             Toast.makeText(
                 this.context,
                 listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition],
                 Toast.LENGTH_SHORT
             ).show()
             false
-        }
+        }*/
     }
 }
