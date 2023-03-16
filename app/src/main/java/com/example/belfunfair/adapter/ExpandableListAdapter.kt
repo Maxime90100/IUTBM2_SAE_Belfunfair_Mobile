@@ -78,10 +78,11 @@ class ExpandableListAdapter internal constructor(
 
     fun setListeners(expandableListView:ExpandableListView,listData:HashMap<String, List<String>>){
         expandableListView.setOnGroupExpandListener { groupPosition ->
-            val list = (titleList as ArrayList<String>)[groupPosition]
+            val list = expandableListView.getExpandableListAdapter().getGroup(groupPosition)
+            val numElements = expandableListView.getExpandableListAdapter().getChildrenCount(groupPosition)
             Toast.makeText(
                 this.context,
-                list.length.toString()+" "+ list.lowercase(Locale.ROOT),
+                "$numElements $list",
                 Toast.LENGTH_SHORT
             ).show()
         }
