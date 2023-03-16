@@ -28,6 +28,13 @@ internal object AttractionsExpandableListData {
             _stands.forEach { s -> stands.add(s.toString()) }
             expandableListDetail["STANDS"] = stands
 
+            val _artists = arrayOf(
+                Artist("Le trio", description, "Jazz", arrayOf("Eustache Durand","Emmanuelle Souplet","Daniel Dandonneau"), "2023-06-10","2023-06-25")
+            )
+            val artists: MutableList<String> = ArrayList()
+            _artists.forEach { a -> artists.add(a.toString()) }
+            expandableListDetail["ARTISTES"] = artists
+
             return expandableListDetail
         }
 }
