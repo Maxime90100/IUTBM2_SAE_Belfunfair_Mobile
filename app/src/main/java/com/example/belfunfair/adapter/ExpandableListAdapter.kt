@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.belfunfair.R
 import java.util.*
 import kotlin.collections.ArrayList
@@ -66,6 +67,7 @@ class ExpandableListAdapter internal constructor(
         }
         val listTitleTextView = _convertView!!.findViewById<TextView>(R.id.listView)
         listTitleTextView.setTypeface(null, Typeface.BOLD)
+        listTitleTextView.setTextColor(ContextCompat.getColor(this.context, R.color.orange_dark))
         listTitleTextView.text = listTitle
         return _convertView
     }
@@ -76,23 +78,21 @@ class ExpandableListAdapter internal constructor(
         return true
     }
 
-    fun setListeners(expandableListView:ExpandableListView,listData:HashMap<String, List<String>>){
+    fun setListeners(expandableListView: ExpandableListView, listData: HashMap<String, List<String>>) {
         expandableListView.setOnGroupExpandListener { groupPosition ->
-            val list = expandableListView.getExpandableListAdapter().getGroup(groupPosition)
-            val numElements = expandableListView.getExpandableListAdapter().getChildrenCount(groupPosition)
-            Toast.makeText(
-                this.context,
-                "$numElements $list",
-                Toast.LENGTH_SHORT
-            ).show()
+            // Collapse all other groups except the one that was just expanded
+            for (i in 0 until expandableListView.expandableListAdapter.groupCount) {
+                if (i != groupPosition) {
+                    expandableListView.collapseGroup(i)
+                }
+            }
+            // Display a toast message with information about the expanded group
+            val list = expandableListView.expandableListAdapter.getGroup(groupPosition)
+            val numElements = expandableListView.expandableListAdapter.getChildrenCount(groupPosition)
+            Toast.makeText(this.context, "$numElements $list", Toast.LENGTH_SHORT).show()
         }
-        /*expandableListView.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-            Toast.makeText(
-                this.context,
-                listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition],
-                Toast.LENGTH_SHORT
-            ).show()
-            false
-        }*/
+        expandableListView.setOnGroupCollapseListener { groupPosition ->
+            // Do nothing when a group is collapsed
+        }
     }
 }

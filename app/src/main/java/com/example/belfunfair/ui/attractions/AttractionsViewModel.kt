@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class AttractionsViewModel : ViewModel() {
 
-    private var _title = MutableLiveData<String>().apply { value = "Liste des attractions" }
+    private var _title = MutableLiveData<String>().apply { value = "Découvrez toutes nos attractions" }
 
     val title: LiveData<String> = _title
 

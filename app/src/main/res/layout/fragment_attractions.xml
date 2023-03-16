@@ -9,15 +9,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/attractions_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/prev_title"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="@string/prev_title"/>
+            android:textSize="40sp"
+            android:paddingVertical="20sp"/>
 
         <ExpandableListView
             android:id="@+id/attractions_expendableList"
