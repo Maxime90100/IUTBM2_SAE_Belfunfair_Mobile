@@ -4,5 +4,5 @@
 
     <item
         android:id="@+id/connexionFragment"
-        android:title="@string/connexion" />
+        android:title="@string/connexion"/>
 </menu>
