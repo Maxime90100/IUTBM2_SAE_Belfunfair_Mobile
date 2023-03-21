@@ -21,17 +21,8 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:src="@drawable/map"
-            android:contentDescription="@string/image_description_map"
-            android:paddingVertical="20dp" />
-
         <WebView
-            android:id="@+id/webview"
+            android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
