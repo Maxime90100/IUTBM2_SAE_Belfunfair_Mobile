@@ -1,4 +1,4 @@
-package com.example.belfunfair.ui.attractions
+package com.example.belfunfair.ui.map
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.belfunfair.databinding.FragmentMapBinding
-import com.example.belfunfair.ui.map.MapViewModel
 
 
 class MapFragment : Fragment() {
@@ -34,6 +33,9 @@ class MapFragment : Fragment() {
 
         val title: TextView = binding.mapTitle
         mapViewModel.title.observe(viewLifecycleOwner) { title.text = it }
+
+        val map: ImageView = binding.map
+
     }
 
     override fun onDestroyView() {

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class MapViewModel : ViewModel() {
 
-    private val _title = MutableLiveData<String>().apply { value = "Map" }
+    private val _title = MutableLiveData<String>().apply { value = "Carte interactive" }
 
     val title: LiveData<String> = _title
 }

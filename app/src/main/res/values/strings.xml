@@ -12,6 +12,7 @@
     <string name="image_description_carrousel">Image de l\'évènement Belfunfair</string>
     <string name="image_description_lion_de_belfort">Image lion de Belfort</string>
     <string name="image_description_logo">Logo de Belfunfair</string>
+    <string name="image_description_map">Carte interactive</string>
     <string name="prev_switch">Changer le thème</string>
     <string name="night_mode">Mode nuit</string>
     <string name="day_mode">Mode jour</string>
