@@ -2,25 +2,25 @@ package com.example.belfunfair.ui.map
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
-import android.widget.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.belfunfair.databinding.FragmentMapBinding
-import com.example.belfunfair.ui.attractions.AttractionsExpandableListData
 
 
 class MapFragment : Fragment() {
 
     private var _mapViewModel: MapViewModel? = null
     private var _binding: FragmentMapBinding? = null
+    private lateinit var _jsInterface: JavaScriptInterface
 
     private val mapViewModel get() = _mapViewModel!!
     private val binding get() = _binding!!
+    private val jsInterface get() = _jsInterface
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +28,12 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
+        _jsInterface = JavaScriptInterface(this.requireContext(), this);
         initModel()
         return binding.root
     }
 
-    @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
+    @SuppressLint("JavascriptInterface")
     private fun initModel(){
         _mapViewModel = ViewModelProvider(this)[MapViewModel::class.java]
 
@@ -40,13 +41,29 @@ class MapFragment : Fragment() {
         mapViewModel.title.observe(viewLifecycleOwner) { title.text = it }
 
         val map: WebView = binding.map
-        map.settings.javaScriptEnabled = true
-        map.settings.javaScriptCanOpenWindowsAutomatically = true
-        map.settings.domStorageEnabled = true
+        setWebViewSettings(map)
 
-        map.addJavascriptInterface(JavaScriptInterface(this.context), "Android")
+        map.addJavascriptInterface(jsInterface, "Android")
         map.loadUrl("file:///android_asset/map/map.html")
     }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setWebViewSettings(webView: WebView){
+        val webSettings = webView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.javaScriptCanOpenWindowsAutomatically = true
+        webSettings.domStorageEnabled = true
+        webSettings.builtInZoomControls = true;
+        webSettings.loadWithOverviewMode = true;
+        webSettings.useWideViewPort = false;
+    }
+    fun setAttractions(list: ArrayList<Any>) {
+        activity?.runOnUiThread {
+            val attractions: TextView = binding.mapAttractions
+            attractions.text = list.toString()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -5,12 +5,13 @@ class Artist(
     private val descripton: String,
     private val type: String,
     private val groupe: Array<String>,
-    private val dateStart: String,
-    private val dateEnd: String
+    private val date: String,
+    private val startHour: String,
+    private val endHour: String
 ){
     override fun toString(): String {
         return "$name ($type) \n " +
-                "Du $dateStart au $dateEnd \n" +
+                "Le $date, de $startHour à $endHour\n" +
                 getMembers(groupe)
     }
 }

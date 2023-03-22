@@ -9,6 +9,7 @@ paths.forEach(path => {
         paths.forEach(p => p.style.fill = "gray");
         path.style.fill = "darkorange";
         Android.showToast(path.id);
+        Android.getAttractions(path.id);
     });
 });
 
