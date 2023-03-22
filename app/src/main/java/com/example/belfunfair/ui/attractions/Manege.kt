@@ -6,7 +6,6 @@ class Manege(
     private val type: String,
     private val tailleMin: Int?,
     private val description: String,
-    private val slot: Int,
     private val dateStart: String,
     private val dateEnd: String
 ) {
@@ -17,7 +16,6 @@ class Manege(
         val tailleMin: String = tailleMin?.toString() ?: "aucune restriction"
         return "$name ($type) \n " +
                 "Du $dateStart au $dateEnd \n" +
-                "- Taille minimale: $tailleMin \n " +
-                "- Emplacement: $slot"
+                "- Taille minimale: $tailleMin"
     }
 }

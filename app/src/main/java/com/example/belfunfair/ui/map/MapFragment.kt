@@ -60,7 +60,11 @@ class MapFragment : Fragment() {
     fun setAttractions(list: ArrayList<Any>) {
         activity?.runOnUiThread {
             val attractions: TextView = binding.mapAttractions
-            attractions.text = list.toString()
+            var text: String = ""
+            if(list.size > 0) list.forEach { e -> text += e.toString() + "\n\n" }
+            else text = "Aucunes informations pour le moment"
+            attractions.text = text
+
         }
     }
 

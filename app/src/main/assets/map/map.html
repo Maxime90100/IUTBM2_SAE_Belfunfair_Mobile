@@ -2,16 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width-device-width, initial-scale-1.0, maximum-scale-1.0, minimal-ui">
+        <meta name="viewport" content="minimal-ui">
         <link rel="stylesheet" href="map.css">
         <title>Carte interactive</title>
     </head>
     <body>
-        <button onclick="changeMap()">Change map</button>
+        <button id="changeMap" onclick="changeMap()"></button>
+
         <button id="btn_manege" class="checkable check">manèges</button>
         <button id="btn_stand" class="checkable check">stands</button>
         <button id="btn_stage" class="checkable check">scène</button>
         <button id="btn_other" class="checkable check">autres</button>
+
         <svg
             id="mapSVG"
             viewBox="0 0 296.07645 156.98164"
@@ -12981,4 +12983,5 @@ Lp09e3Z94/T0+DjTo6eeeGp/foiIIUAAAYWM3H2+/z93nXju2jNeHgAAAABJRU5ErkJggg=="
         </svg>
     </body>
     <script src="map.js"></script>
+    <script src="https://kit.fontawesome.com/d7e4793a44.js" crossorigin="anonymous"></script>
 </html>

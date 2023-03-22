@@ -7,11 +7,23 @@ const paths = Array.from(PATHS).filter(path => path.id !== 'plan');
 const BUTTONS = document.querySelectorAll('button')
 const buttons = Array.from(BUTTONS).filter(btn => btn.id.includes('btn'))
 
+changeMap()
 setButtonsListeners()
 setPathsListeners()
 
 function changeMap(){
-    satelite.style.opacity = satelite.style.opacity === "0" ? "100" : "0"
+    let btn = document.getElementById("changeMap")
+    let html
+    if(btn.classList.contains("satellite")){
+        html = "<i class=\"fa-solid fa-map\"></i> Carte"
+        satelite.style.opacity = "0"
+        btn.classList.remove("satellite")
+    }else{
+        html = "<i class=\"fa-solid fa-globe\"></i> Satellite"
+        satelite.style.opacity = "100"
+        btn.classList.add("satellite")
+    }
+    btn.innerHTML = html
 }
 
 function setPathsListeners(){
@@ -52,7 +64,13 @@ function showPaths(type,show){
         })
     }
     selectedPaths.forEach(path => {
-        if(show) path.style.opacity = "100"
-        else path.style.opacity = "0"
+        if(show){
+            path.style.opacity = "100"
+            path.style.pointerEvents = "auto"
+        }
+        else{
+            path.style.opacity = "0"
+            path.style.pointerEvents = "none"
+        }
     });
 }
