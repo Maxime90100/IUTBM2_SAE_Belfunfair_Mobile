@@ -3,6 +3,16 @@ button{
     padding: 5px;
     border-radius: 10px;
     border: none;
+    background-color: darkblue;
+    color: white;
+}
+.checkable{
+    background-color: white;
+    color: darkblue;
+    border: 2px solid darkblue;
+}
+.check{
     background-color: darkorange;
     color: white;
+    border: none;
 }
