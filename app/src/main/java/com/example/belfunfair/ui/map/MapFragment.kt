@@ -1,5 +1,6 @@
 package com.example.belfunfair.ui.map
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +10,8 @@ import android.webkit.WebView
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.belfunfair.R
 import com.example.belfunfair.databinding.FragmentMapBinding
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import com.example.belfunfair.ui.attractions.AttractionsExpandableListData
 
 
 class MapFragment : Fragment() {
@@ -33,6 +32,7 @@ class MapFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     private fun initModel(){
         _mapViewModel = ViewModelProvider(this)[MapViewModel::class.java]
 
@@ -40,8 +40,12 @@ class MapFragment : Fragment() {
         mapViewModel.title.observe(viewLifecycleOwner) { title.text = it }
 
         val map: WebView = binding.map
-        map.loadUrl("file:///android_asset/map/map.html")
+        map.settings.javaScriptEnabled = true
+        map.settings.javaScriptCanOpenWindowsAutomatically = true
+        map.settings.domStorageEnabled = true
 
+        map.addJavascriptInterface(JavaScriptInterface(this.context), "Android")
+        map.loadUrl("file:///android_asset/map/map.html")
     }
     override fun onDestroyView() {
         super.onDestroyView()

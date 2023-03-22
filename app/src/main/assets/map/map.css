@@ -1,3 +1,8 @@
-h1{
-    color: red;
+button{
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: darkorange;
+    color: white;
 }
